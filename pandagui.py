@@ -27,20 +27,21 @@ class PandaGUI(xbmcgui.WindowXMLDialog):
 	def onInit(self):
 		print "PANDORA: Window Initalized!!!"
 		self.list = self.getControl(200)
-		dlg = xbmcgui.DialogProgress()
-		dlg.create("PANDORA", "Fetching Stations")
-		dlg.update(0)
+		dlg = xbmcgui.Dialog()
+		dlg.notification("PANDORA", "Fetching Stations", xbmcgui.NOTIFICATION_INFO, 250)
 		for s in self.panda.getStations():
 			tmp = xbmcgui.ListItem(s.name)
 			tmp.setProperty("stationId", s.id)
 			self.list.addItem(tmp)
-		dlg.close()
 		self.getControl(BTN_THUMBED_DN).setVisible(False)
 		self.getControl(BTN_THUMBED_UP).setVisible(False)
 
 		logo = self.getControl(100)
 		if self.panda.settings.getSetting("logoSize") == "false":
 			logo.setPosition(-100, -100)
+
+		if self.panda.settings.getSetting("LastStation") != "":
+			self.panda.playStation(self.panda.settings.getSetting("LastStation"))
 
 	def onAction(self, action):
 		buttonCode = action.getButtonCode()
