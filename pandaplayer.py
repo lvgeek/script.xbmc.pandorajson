@@ -25,7 +25,7 @@ class PandaPlayer(xbmc.Player):
 				self.panda.quit()
 			else:
 				#Show Visualization (disappears after each song...)'''
-			xbmc.executebuiltin("ActivateWindow( 2006 )")
+			xbmc.executebuiltin("ActivateWindow(2006)")
 
 	def onPlayBackEnded(self):
 		print "PANDORA: onPlayBackEnded"

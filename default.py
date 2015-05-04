@@ -72,13 +72,16 @@ class Panda:
 
         # Get skin from settings.
         # Check if a value is set in the settings. If not then use Default.
-        if self.settings.getSetting ("skin") != "":
-            self.skinName = self.settings.getSetting("skin")
+#        if self.settings.getSetting ("skin") != "":
+#            self.skinName = self.settings.getSetting("skin")
         
         self.player = PandaPlayer(panda=self)
 
-        self.gui = PandaGUI("script-pandora.xml", scriptPath, self.skinName)
-        
+#        if self.settings.getSetting("LastStation") != "":
+#            self.playStation(self.settings.getSetting("LastStation"))
+
+#        else: 
+        self.gui = PandaGUI("script-pandora.xml", scriptPath, self.skinName)     
         self.gui.setPanda(self)
 
     def auth(self):
