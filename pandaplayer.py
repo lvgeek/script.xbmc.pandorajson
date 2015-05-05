@@ -36,7 +36,7 @@ class PandaPlayer(xbmc.Player):
 		if self.panda.skip:
 			self.panda.skip = False
 		if self.panda.playing:
-			self.timer = Timer(0.5, self.panda.playNextSong)
+			self.timer = Timer(1, self.panda.playNextSong)
 			self.timer.start()
 
 	def onPlayBackStopped(self):
@@ -48,5 +48,5 @@ class PandaPlayer(xbmc.Player):
 		if self.panda.playing:
 			if self.panda.skip:
 				self.panda.skip = False
-			self.timer = Timer(0.5, self.panda.playNextSong)
+			self.timer = Timer(1, self.panda.playNextSong)
 			self.timer.start()

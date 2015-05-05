@@ -87,7 +87,7 @@ class PandaGUI(xbmcgui.WindowXMLDialog):
                 #   print ">>> obj.%s = %s" % (attr, getattr(obj, attr))
                 # self.panda.addTiredSong()
                 # self.panda.playNextSong()
-                xbmc.executebuiltin("XBMC.ReplaceWindow(10000)")
+                
             elif controlID == BTN_HIDE:
                 pass #Handled by skin
 

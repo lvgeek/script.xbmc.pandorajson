@@ -16,7 +16,7 @@ dlg.notification("PANDORA", "Loading...", xbmcgui.NOTIFICATION_INFO, 250)
 
 from libpandora.pandora import Pandora, PandoraError
 
-from pandagui import PandaGUI
+#from pandagui import PandaGUI
 from pandaplayer import PandaPlayer
 
 scriptPath = __settings__.getAddonInfo('path')
@@ -40,7 +40,7 @@ class PandaException(Exception):
 class Panda:
 
     def __init__(self):
-        self.gui = None
+        #self.gui = None
         self.pandora = None
         self.playlist = []
         self.curStation = ""
@@ -77,12 +77,12 @@ class Panda:
         
         self.player = PandaPlayer(panda=self)
 
-#        if self.settings.getSetting("LastStation") != "":
-#            self.playStation(self.settings.getSetting("LastStation"))
+        if self.settings.getSetting("LastStation") != "":
+            self.playStation(self.settings.getSetting("LastStation"))
 
 #        else: 
-        self.gui = PandaGUI("script-pandora.xml", scriptPath, self.skinName)     
-        self.gui.setPanda(self)
+            #self.gui = PandaGUI("script-pandora.xml", scriptPath, self.skinName)     
+            #self.gui.setPanda(self)
 
     def auth(self):
         dlg = xbmcgui.Dialog()
@@ -143,11 +143,11 @@ class Panda:
             Next = self.playlist.pop(0)
             self.player.playSong(Next)
             art = Next[1].getProperty("Cover")
-            self.gui.setProperty("AlbumArt", art)
+            #self.gui.setProperty("AlbumArt", art)
             self.curSong = Next
             
-            rating = int(Next[1].getProperty("Rating"))
-            self.gui.setRating(rating)
+            #rating = int(Next[1].getProperty("Rating"))
+            #self.gui.setRating(rating)
             
         except IndexError:
             self.curSong = None
@@ -176,7 +176,7 @@ class Panda:
     def main(self):
         if self.die:
             return
-        self.gui.doModal()
+        #self.gui.doModal()
         self.cleanup()
         xbmc.sleep(500) #Wait to make sure everything finishes
 
@@ -191,7 +191,7 @@ class Panda:
         if self.playing:
             self.playing = False
             self.player.stop()
-        del self.gui
+        #del self.gui
         del self.player
 
     def Quit(self):
@@ -199,8 +199,8 @@ class Panda:
         if self.player and self.player.timer\
                 and self.player.timer.isAlive():
             self.player.timer.stop()
-        if self.gui != None:
-            self.gui.close()
+        #if self.gui != None:
+            #self.gui.close()
         self.die = True
 
 if __name__ == '__main__':
@@ -211,4 +211,4 @@ if __name__ == '__main__':
         __settings__.setSetting("firstrun", "true")
     else:
         panda = Panda()
-        panda.main()
+        #panda.main()
